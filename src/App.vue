@@ -1,30 +1,23 @@
 <template>
   <div class="max-w-lg mx-auto py-20">
-    <div class="flex items-center gap-2">
-      <div class="bg-gray-300 rounded-full w-14 h-14"></div>
-      <div>
-        <label for="hours-old">{{ student.name }} is</label>
-        <div class="flex gap-2">
-          <input
-            v-model="student.age"
-            name="hours-old"
-            id="hours-old"
-            class="border-b-gray-300 border-b w-[50px]"
-            type="number"
-          />
-          <div class="text">hours old</div>
-        </div>
-      </div>
-    </div>
+    <Card
+      v-for="(student, index) in students"
+      :index="index"
+      :key="student.id"
+      :name="student.name"
+      v-model="student.age"
+      :image-url="student.image"
+      class="mb-6"
+    />
   </div>
 </template>
 
 <script setup lang="ts">
-const student = {
-  name: 'Hugh',
-  age: null,
-  image: null,
-}
-</script>
+import Card from './components/ExtendedCard.vue'
 
-<style></style>
+const students = [
+  { id: 1, name: 'Samuel', age: '7', image: 'https://i.pravatar.cc/300' },
+  // { id: 2, name: 'Samuel', age: '100', image: 'https://i.pravatar.cc/300' },
+  // { id: 3, name: 'Samuel', age: '1000000', image: 'https://i.pravatar.cc/300' }
+  ]
+</script>
